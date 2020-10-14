@@ -4,7 +4,8 @@
 <html lang="en" dir="ltr">
     <head>
         <meta charset="utf-8">
-        <title>Muhammad Rif'an D</title>
+        <title>Rifan</title>
+        <link rel="icon" href="assets/icon/hamsa.png">
         <link rel="stylesheet" href="assets/css/style.css">
         <link rel="stylesheet" href="assets/css/960_16_col.css">
     </head>
