@@ -252,6 +252,11 @@ body{
 .erow .grid_7 h1{
     margin: 23px 0 0;
     padding: 0;
+    text-transform: uppercase;
+}
+
+.erow .grid_7 h1 span{
+    text-transform: none;
 }
 
 .erow .grid_7 h1 span:nth-of-type(1){

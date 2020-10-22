@@ -1,4 +1,4 @@
-<?php require_once 'data.php'; ?>
+<?php include_once 'config.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -8,6 +8,7 @@
         <link rel="icon" href="assets/icon/hamsa.png">
         <link rel="stylesheet" href="assets/css/style.css">
         <link rel="stylesheet" href="assets/css/960_16_col.css">
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js" charset="utf-8"></script>
     </head>
     <body>
         <div id="home">
@@ -55,44 +56,25 @@
             <!-- ------------------------------------------- -->
             <div id="academic">
                 <div class="container_16">
-                    <div class="erow push_3 grid_12">
-                        <div class="grid_3">
-                            <img src="assets/image/sd.png" alt="">
-                        </div>
-                        <div class="push_2 grid_7">
-                            <h1>
-                                <span>2006 - 2012</span><br>
-                                <?= $data['school1'] ?><br>
-                                <span>( Elementary School )</span>
-                            </h1>
-                        </div>
-                    </div>
-                    <div class="clear"></div>
-                    <div class="erow push_3 grid_12">
-                        <div class="grid_3">
-                            <img src="assets/image/smp.png" alt="">
-                        </div>
-                        <div class="push_2 grid_7">
-                            <h1>
-                                <span>2012 - 2015</span><br>
-                                <?= $data['school2'] ?><br>
-                                <span>( Junior High School )</span>
-                            </h1>
-                        </div>
-                    </div>
-                    <div class="clear"></div>
-                    <div class="erow push_3 grid_12">
-                        <div class="grid_3">
-                            <img src="assets/image/smk.png" alt="">
-                        </div>
-                        <div class="push_2 grid_7">
-                            <h1>
-                                <span>2015 - 2018</span><br>
-                                <?= $data['school3'] ?><br>
-                                <span>( Vocational High School )</span>
-                            </h1>
-                        </div>
-                    </div>
+                    <?php $result = select("academic");
+
+                        while ($row = $result -> fetch()) { ?>
+
+                            <div class="erow push_3 grid_12">
+                                <div class="grid_3">
+                                    <img src="assets/image/<?= $row['gambar'] ?>" alt="">
+                                </div>
+                                <div class="push_2 grid_7">
+                                    <h1>
+                                        <span><?= $row['tahun'] ?></span><br>
+                                        <?= $row['nama'] ?><br>
+                                        <span>( <?= $row['jenis'] ?> )</span>
+                                    </h1>
+                                </div>
+                            </div>
+                            <div class="clear"></div>
+
+                    <?php } ?>
                 </div>
                 <div class="bg_academic_out"></div>
                 <div class="academic_out push_5 grid_6" onclick="out_academic()">
@@ -102,32 +84,26 @@
             <!-- ------------------------------------------- -->
             <div id="project">
                 <div class="container_16">
-                    <div class="prow grid_16">
-                        <div class="grid_7">
-                            <h1><?= substr($data['project1'], 0, 17) ?><br><?= substr($data['project1'], 18) ?></h1>
-                        </div>
-                        <div id="project01" class="push_1 grid_6">
-                            <img id="imgproject01" width="100%" height="auto" src="assets/image/project01.png" alt="" onmouseover="hover_p01()" onmouseout="hout_p01()">
-                        </div>
-                    </div>
-                    <div class="clear"></div>
-                    <div class="prow grid_16">
-                        <div class="grid_7">
-                            <h1><?= substr($data['project2'], 0, 16) ?><br><?= substr($data['project2'], 17) ?></h1>
-                        </div>
-                        <div id="project02" class="push_1 grid_6">
-                            <img id="imgproject02" width="100%" height="auto" src="assets/image/project02.png" alt="" onmouseover="hover_p02()" onmouseout="hout_p02()">
-                        </div>
-                    </div>
-                    <div class="clear"></div>
-                    <div class="prow grid_16">
-                        <div class="grid_7">
-                            <h1><?= substr($data['project3'], 0, 20) ?><br><?= substr($data['project3'], 21) ?></h1>
-                        </div>
-                        <div id="project03" class="push_1 grid_6">
-                            <img id="imgproject03" width="100%" height="auto" src="assets/image/project03.png" alt="" onmouseover="hover_p03()" onmouseout="hout_p03()">
-                        </div>
-                    </div>
+
+                    <?php $result = select("project");
+
+                        while ($row = $result -> fetch()) { ?>
+                            <div class="prow grid_16">
+                                <div class="grid_7">
+                                    <?php if ($row['id'] == 1): ?>
+                                        <h1><?= substr($row['nama'], 0, 17) ?><br><?= substr($row['nama'], 18) ?></h1>
+                                    <?php elseif($row['id'] == 2): ?>
+                                        <h1><?= substr($row['nama'], 0, 16) ?><br><?= substr($row['nama'], 17) ?></h1>
+                                    <?php elseif($row['id'] == 3): ?>
+                                        <h1><?= substr($row['nama'], 0, 20) ?><br><?= substr($row['nama'], 21) ?></h1>
+                                    <?php endif; ?>
+                                </div>
+                                <div id="project0<?= $row['id'] ?>" class="push_1 grid_6">
+                                    <img id="imgproject0<?= $row['id'] ?>" width="100%" height="auto" src="assets/image/<?= $row['gambar'] ?>" alt="" onmouseover="hover_p0<?= $row['id'] ?>()" onmouseout="hout_p0<?= $row['id'] ?>()">
+                                </div>
+                            </div>
+
+                    <?php } ?>
                 </div>
                 <div class="bg_project_out"></div>
                 <div class="project_out push_5 grid_6" onclick="out_project()">
@@ -160,35 +136,35 @@
             var pos = 1;
 
             function in_about() {
-                document.getElementById('about').style.top = 0;
+                $('#about').css("top", 0);
             }
 
             function out_about() {
-                document.getElementById('about').style.top = "-100%";
+                $('#about').css("top", "-100%");
             }
 
             function in_academic() {
-                document.getElementById('academic').style.right = 0;
+                $('#academic').css("right", 0);
             }
 
             function out_academic() {
-                document.getElementById('academic').style.right = "-100%";
+                $('#academic').css("right", "-100%");
             }
 
             function in_project() {
-                document.getElementById('project').style.left = 0;
+                $('#project').css("left", 0);
             }
 
             function out_project() {
-                document.getElementById('project').style.left = "-100%";
+                $('#project').css("left", "-100%");
             }
 
             function in_contact() {
-                document.getElementById('contact').style.bottom = 0;
+                $('#contact').css("bottom", 0);
             }
 
             function out_contact() {
-                document.getElementById('contact').style.bottom = "-100%";
+                $('#contact').css("bottom", "-100%");
             }
 
             function changeicon(dir) {
@@ -208,102 +184,102 @@
                 }
 
                 if (pos == 1) {
-                    document.getElementById("ikon_1").style.transform = "translate(0px, 0px)";
-                    document.getElementById("ikon_2").style.transform = "translate(100px, 0px)";
-                    document.getElementById("ikon_3").style.transform = "translate(100px, 100px)";
-                    document.getElementById("ikon_4").style.transform = "translate(0px, 100px)";
-                    document.getElementById("ikon_5").style.transform = "translate(-100px, 100px)";
-                    document.getElementById("ikon_6").style.transform = "translate(-100px, 0px)";
+                    $("#ikon_1").css("transform", "translate(0px, 0px)");
+                    $("#ikon_2").css("transform", "translate(100px, 0px)");
+                    $("#ikon_3").css("transform", "translate(100px, 100px)");
+                    $("#ikon_4").css("transform", "translate(0px, 100px)");
+                    $("#ikon_5").css("transform", "translate(-100px, 100px)");
+                    $("#ikon_6").css("transform", "translate(-100px, 0px)");
 
-                    document.getElementById("contact").style.background = "#f44336";
+                    $("#contact").css("background", "#f44336");
                 } else if (pos == 2) {
-                    document.getElementById("ikon_2").style.transform = "translate(0px, 0px)";
-                    document.getElementById("ikon_3").style.transform = "translate(100px, 0px)";
-                    document.getElementById("ikon_4").style.transform = "translate(100px, 100px)";
-                    document.getElementById("ikon_5").style.transform = "translate(0px, 100px)";
-                    document.getElementById("ikon_6").style.transform = "translate(-100px, 100px)";
-                    document.getElementById("ikon_1").style.transform = "translate(-100px, 0px)";
+                    $("#ikon_2").css("transform", "translate(0px, 0px)");
+                    $("#ikon_3").css("transform", "translate(100px, 0px)");
+                    $("#ikon_4").css("transform", "translate(100px, 100px)");
+                    $("#ikon_5").css("transform", "translate(0px, 100px)");
+                    $("#ikon_6").css("transform", "translate(-100px, 100px)");
+                    $("#ikon_1").css("transform", "translate(-100px, 0px)");
 
-                    document.getElementById("contact").style.background = "#5c6bc0";
+                    $("#contact").css("background", "#5c6bc0");
                 } else if (pos == 3) {
-                    document.getElementById("ikon_3").style.transform = "translate(0px, 0px)";
-                    document.getElementById("ikon_4").style.transform = "translate(100px, 0px)";
-                    document.getElementById("ikon_5").style.transform = "translate(100px, 100px)";
-                    document.getElementById("ikon_6").style.transform = "translate(0px, 100px)";
-                    document.getElementById("ikon_1").style.transform = "translate(-100px, 100px)";
-                    document.getElementById("ikon_2").style.transform = "translate(-100px, 0px)";
+                    $("#ikon_3").css("transform", "translate(0px, 0px)");
+                    $("#ikon_4").css("transform", "translate(100px, 0px)");
+                    $("#ikon_5").css("transform", "translate(100px, 100px)");
+                    $("#ikon_6").css("transform", "translate(0px, 100px)");
+                    $("#ikon_1").css("transform", "translate(-100px, 100px)");
+                    $("#ikon_2").css("transform", "translate(-100px, 0px)");
 
-                    document.getElementById("contact").style.background = "#039be5";
+                    $("#contact").css("background", "#039be5");
                 } else if (pos == 4) {
-                    document.getElementById("ikon_4").style.transform = "translate(0px, 0px)";
-                    document.getElementById("ikon_5").style.transform = "translate(100px, 0px)";
-                    document.getElementById("ikon_6").style.transform = "translate(100px, 100px)";
-                    document.getElementById("ikon_1").style.transform = "translate(0px, 100px)";
-                    document.getElementById("ikon_2").style.transform = "translate(-100px, 100px)";
-                    document.getElementById("ikon_3").style.transform = "translate(-100px, 0px)";
+                    $("#ikon_4").css("transform", "translate(0px, 0px)");
+                    $("#ikon_5").css("transform", "translate(100px, 0px)");
+                    $("#ikon_6").css("transform", "translate(100px, 100px)");
+                    $("#ikon_1").css("transform", "translate(0px, 100px)");
+                    $("#ikon_2").css("transform", "translate(-100px, 100px)");
+                    $("#ikon_3").css("transform", "translate(-100px, 0px)");
 
-                    document.getElementById("contact").style.background = "#ef4b5e";
+                    $("#contact").css("background", "#ef4b5e");
                 } else if (pos == 5) {
-                    document.getElementById("ikon_5").style.transform = "translate(0px, 0px)";
-                    document.getElementById("ikon_6").style.transform = "translate(100px, 0px)";
-                    document.getElementById("ikon_1").style.transform = "translate(100px, 100px)";
-                    document.getElementById("ikon_2").style.transform = "translate(0px, 100px)";
-                    document.getElementById("ikon_3").style.transform = "translate(-100px, 100px)";
-                    document.getElementById("ikon_4").style.transform = "translate(-100px, 0px)";
+                    $("#ikon_5").css("transform", "translate(0px, 0px)");
+                    $("#ikon_6").css("transform", "translate(100px, 0px)");
+                    $("#ikon_1").css("transform", "translate(100px, 100px)");
+                    $("#ikon_2").css("transform", "translate(0px, 100px)");
+                    $("#ikon_3").css("transform", "translate(-100px, 100px)");
+                    $("#ikon_4").css("transform", "translate(-100px, 0px)");
 
-                    document.getElementById("contact").style.background = "#1da1f3";
+                    $("#contact").css("background", "#1da1f3");
                 } else if (pos == 6) {
-                    document.getElementById("ikon_6").style.transform = "translate(0px, 0px)";
-                    document.getElementById("ikon_1").style.transform = "translate(100px, 0px)";
-                    document.getElementById("ikon_2").style.transform = "translate(100px, 100px)";
-                    document.getElementById("ikon_3").style.transform = "translate(0px, 100px)";
-                    document.getElementById("ikon_4").style.transform = "translate(-100px, 100px)";
-                    document.getElementById("ikon_5").style.transform = "translate(-100px, 0px)";
+                    $("#ikon_6").css("transform", "translate(0px, 0px)");
+                    $("#ikon_1").css("transform", "translate(100px, 0px)");
+                    $("#ikon_2").css("transform", "translate(100px, 100px)");
+                    $("#ikon_3").css("transform", "translate(0px, 100px)");
+                    $("#ikon_4").css("transform", "translate(-100px, 100px)");
+                    $("#ikon_5").css("transform", "translate(-100px, 0px)");
 
-                    document.getElementById("contact").style.background = "#1976d2";
+                    $("#contact").css("background", "#1976d2");
                 }
             }
 
             function hover_p01() {
-                document.getElementById("project01").style.zIndex = "2";
-                document.getElementById("imgproject01").style.width = "800px";
-                document.getElementById("imgproject01").style.height = "450px";
-                document.getElementById("imgproject01").style.transform = "translate(-50%, 10%)";
+                $("#project01").css("zIndex", "2");
+                $("#imgproject01").css("width", "800px");
+                $("#imgproject01").css("height", "450px");
+                $("#imgproject01").css("transform", "translate(-50%, 10%)");
             }
 
             function hout_p01() {
-                document.getElementById("project01").style.zIndex = "0";
-                document.getElementById("imgproject01").style.width = "340px";
-                document.getElementById("imgproject01").style.height = "150px";
-                document.getElementById("imgproject01").style.transform = "translate(0, 0)";
+                $("#project01").css("zIndex", "0");
+                $("#imgproject01").css("width", "340px");
+                $("#imgproject01").css("height", "150px");
+                $("#imgproject01").css("transform", "translate(0, 0)");
             }
 
             function hover_p02() {
-                document.getElementById("project02").style.zIndex = "2";
-                document.getElementById("imgproject02").style.width = "800px";
-                document.getElementById("imgproject02").style.height = "600px";
-                document.getElementById("imgproject02").style.transform = "translate(-50%, -40%)";
+                $("#project02").css("zIndex", "2");
+                $("#imgproject02").css("width", "800px");
+                $("#imgproject02").css("height", "600px");
+                $("#imgproject02").css("transform", "translate(-50%, -40%)");
             }
 
             function hout_p02() {
-                document.getElementById("project02").style.zIndex = "0";
-                document.getElementById("imgproject02").style.width = "340px";
-                document.getElementById("imgproject02").style.height = "150px";
-                document.getElementById("imgproject02").style.transform = "translate(0, 0)";
+                $("#project02").css("zIndex", "0");
+                $("#imgproject02").css("width", "340px");
+                $("#imgproject02").css("height", "150px");
+                $("#imgproject02").css("transform", "translate(0, 0)");
             }
 
             function hover_p03() {
-                document.getElementById("project03").style.zIndex = "2";
-                document.getElementById("imgproject03").style.width = "800px";
-                document.getElementById("imgproject03").style.height = "470px";
-                document.getElementById("imgproject03").style.transform = "translate(-50%, -70%)";
+                $("#project03").css("zIndex", "2");
+                $("#imgproject03").css("width", "800px");
+                $("#imgproject03").css("height", "470px");
+                $("#imgproject03").css("transform", "translate(-50%, -70%)");
             }
 
             function hout_p03() {
-                document.getElementById("project03").style.zIndex = "0";
-                document.getElementById("imgproject03").style.width = "340px";
-                document.getElementById("imgproject03").style.height = "150px";
-                document.getElementById("imgproject03").style.transform = "translate(0, 0)";
+                $("#project03").css("zIndex", "0");
+                $("#imgproject03").css("width", "340px");
+                $("#imgproject03").css("height", "150px");
+                $("#imgproject03").css("transform", "translate(0, 0)");
             }
         </script>
     </body>
