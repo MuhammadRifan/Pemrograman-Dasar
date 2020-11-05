@@ -2,9 +2,6 @@
 
 <div class="container mt-3">
     <div class="input-group mb-3 inline">
-        <button type="button" class="btn btn-outline-success btn-sm col-1 mr-2" data-toggle="modal" data-target="#Tambah">
-            Tambah
-        </button>
         <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1">Filter Harga</span>
         </div>
@@ -15,13 +12,17 @@
     <table class="table table-hover text-center">
         <thead class="thead-dark">
             <tr>
-                <th scope="col">#</th>
-                <th scope="col">SKU</th>
-                <th scope="col">Nama</th>
-                <th scope="col">Kategori</th>
-                <th scope="col">Stok</th>
-                <th scope="col">Harga</th>
-                <th scope="col" colspan="2"></th>
+                <th scope="col" class="align-middle">#</th>
+                <th scope="col" class="align-middle">SKU</th>
+                <th scope="col" class="align-middle">Nama</th>
+                <th scope="col" class="align-middle">Kategori</th>
+                <th scope="col" class="align-middle">Stok</th>
+                <th scope="col" class="align-middle">Harga</th>
+                <th scope="col" colspan="2">
+                    <button type="button" class="btn btn-outline-success btn-sm col-6" data-toggle="modal" data-target="#Tambah">
+                        Tambah
+                    </button>
+                </th>
             </tr>
         </thead>
         <tbody>
@@ -101,6 +102,7 @@
         var kategori = $("#kate").val();
         var stok = $("#Stok").val();
         var harga = $("#Harga").val();
+
         $.ajax({
             type: "POST",
             url: "data.php",
@@ -118,6 +120,7 @@
         var kategori = $("#kate-"+id).val();
         var stok = $("#Stok-"+id).val();
         var harga = $("#Harga-"+id).val();
+        
         $.ajax({
             type: "POST",
             url: "data.php",

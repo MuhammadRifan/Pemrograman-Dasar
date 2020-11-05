@@ -67,8 +67,8 @@ if(isset($_POST['val'])){
         while ($row = $result -> fetch()) { ?>
 
             <tr class="kat-<?= $row['kategori'] ?>">
-                <th scope="row"><?= $no++ ?></th>
-                <th scope="row"><?= $row['sku'] ?></th>
+                <th><?= $no++ ?></th>
+                <th><?= $row['sku'] ?></th>
                 <td><?= $row['nama'] ?></td>
                 <td class="kategori"><?php $result2 = select("kategori");
 
@@ -78,7 +78,7 @@ if(isset($_POST['val'])){
 
                 <td><?= $row['stok'] ?></td>
                 <td><?= $row['harga'] ?></td>
-                <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editID-<?= $row['id'] ?>">
+                <td><button type="button" class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#editID-<?= $row['id'] ?>">
                         Edit
                     </button>
                     <!-- Modal -->
@@ -128,7 +128,7 @@ if(isset($_POST['val'])){
                         </div>
                     </div>
                 </td>
-                <td><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#HapusID-<?= $row['id'] ?>">
+                <td><button type="button" class="btn btn-sm btn-outline-danger" data-toggle="modal" data-target="#HapusID-<?= $row['id'] ?>">
                         Hapus
                     </button>
                     <!-- Modal -->

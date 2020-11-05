@@ -21,9 +21,9 @@
             $no = 1;
             while ($row = $result -> fetch()) { ?>
                 <tr class="kat-<?= $row['kategori'] ?>">
-                    <th scope="row"><?= $no++ ?></th>
+                    <th><?= $no++ ?></th>
                     <td class="kategori"><?= $row['kategori'] ?></td>
-                    <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editID-<?= $row['id'] ?>">
+                    <td><button type="button" class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#editID-<?= $row['id'] ?>">
                             Edit
                         </button>
                         <!-- Modal -->
@@ -52,7 +52,7 @@
                             </div>
                         </div>
                     </td>
-                    <td><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#HapusID-<?= $row['id'] ?>">
+                    <td><button type="button" class="btn btn-sm btn-outline-danger" data-toggle="modal" data-target="#HapusID-<?= $row['id'] ?>">
                             Hapus
                         </button>
                         <!-- Modal -->

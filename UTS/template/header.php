@@ -4,7 +4,7 @@
 <html lang="en" dir="ltr">
     <head>
         <meta charset="utf-8">
-        <title>Adi Mart</title>
+        <title>Barokah Mart</title>
         <link href="assets/css/bootstrap.min.css" rel="stylesheet">
         <script src="assets/js/jquery-3.5.1.min.js"></script>
         <script src="assets/js/bootstrap.bundle.min.js"></script>
@@ -12,7 +12,7 @@
     <body onload="view()">
 
         <nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark">
-            <a class="navbar-brand" href="#">Adi Mart</a>
+            <a class="navbar-brand" href="">Barokah Mart</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
