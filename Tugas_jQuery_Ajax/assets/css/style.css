@@ -1,0 +1,236 @@
+body{
+    /* background-color: #202020; */
+    color: #babab9;
+    min-width: 960px;
+    min-height: 500px;
+}
+
+#home{
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    background: #202020;
+    z-index: 1;
+}
+
+.text_name{
+    top: 30%;
+    margin: 0 2.5%;
+    position: absolute;
+}
+
+.text_name span:last-child{
+    right: 0;
+    position: absolute;
+}
+
+.frame{
+    width: 100%;
+    height: 100vh;
+    min-width: 960px;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+}
+
+#about{
+    width: 100%;
+    height: 100vh;
+    min-width: 960px;
+    position: absolute;
+    top: -100%;
+    transition: top 1s;
+    background-color: #ececec;
+    z-index: 2;
+}
+
+.about_in, .contact_out{
+    height: 60px;
+    line-height: 60px;
+}
+
+.profile img{
+    width: 175px;
+    height: auto;
+    background-color: red;
+    clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+}
+
+.desc_profile{
+    color: #282828;
+}
+
+.about_out, .contact_out, .project_out, .academic_out{
+    background-color: #282828;
+}
+
+.about_out, .contact_in{
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    line-height: 65px;
+    margin: 0;
+    /* background-color: red; */
+}
+
+#academic{
+    width: 100%;
+    height: 100vh;
+    min-width: 960px;
+    position: absolute;
+    top: 0;
+    right: -100%;
+    transition: right 1s;
+    background-color: #ececec;
+    z-index: 2;
+}
+
+.academic_in, .project_out span{
+    position: absolute;
+    top: 45%;
+    right: 0;
+    transform: rotate(90deg);
+}
+
+.academic_out span, .project_in{
+    position: absolute;
+    top: 45%;
+    left: 0;
+    transform: rotate(-90deg);
+}
+
+.academic_out, .project_out{
+    width: 75px;
+    height: 100vh;
+    background-color: #282828;
+    position: absolute;
+    top: 0;
+}
+
+#view-aca{
+    margin-top: 8%;
+}
+
+#form-add-aca{
+    display: none;
+}
+
+#project{
+    width: 100%;
+    height: 100vh;
+    min-width: 960px;
+    position: absolute;
+    top: 0;
+    left: -100%;
+    transition: left 1s;
+    background-color: #ececec;
+    z-index: 2;
+}
+
+.project_out{
+    right: 0;
+}
+
+.prow{
+    /* margin-left: 0 !important; */
+    margin-top: 5%;
+    height: 150px;
+    color: #282828;
+}
+
+.prow div:last-child{
+    width: 340px;
+    height: 150px;
+}
+
+.prow div:last-child img{
+    width: 340px;
+    height: 150px;
+    border: 2px solid #282828;
+    box-shadow: 2px 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.5);
+    transition: width 1s, height 1s, transform 1s;
+}
+
+#contact{
+    width: 100%;
+    height: 100vh;
+    min-width: 960px;
+    position: absolute;
+    bottom: -100%;
+    transition: bottom 1s, background 1s;
+    background: #f44336;
+    z-index: 2;
+}
+
+.contact_out{
+    position: relative;
+    z-index: 2;
+}
+
+.ikon{
+    margin-top: 17%;
+    background-color: white;
+    border-radius: 50%;
+    width: 90px;
+    height: 90px;
+    z-index: 2;
+    position: relative;
+    overflow: hidden;
+}
+
+.ikon img{
+    margin: 23%;
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    transition: transform 1s;
+}
+
+#ikon_1{
+    transform: translate(0px, 0px);
+}
+#ikon_2{
+    transform: translate(100px, 0px);
+}
+#ikon_3{
+    transform: translate(100px, 100px);
+}
+#ikon_4{
+    transform: translate(0px, 100px);
+}
+#ikon_5{
+    transform: translate(-100px, 100px);
+}
+#ikon_6{
+    transform: translate(-100px, 0px);
+}
+
+.ikon_kiri{
+    width: 50%;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.ikon_kanan{
+    width: 50%;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.about_in span,
+.about_out span,
+.academic_in span,
+.academic_out span,
+.project_in span,
+.project_out span,
+.contact_in span,
+.contact_out span {
+    cursor: pointer;
+}
