@@ -47,7 +47,7 @@
                     </div>
                 </div>
                 <div class="about_out text-center h3">
-                    <span onclick="out_about()">BACK</span>
+                    <span onclick="out_about()">⥥&nbsp;&nbsp;&nbsp;BACK&nbsp;&nbsp;&nbsp;⥥</span>
                 </div>
             </div>
 
@@ -108,7 +108,7 @@
 
                 </div>
                 <div class="academic_out text-center h3">
-                    <span onclick="out_academic()">BACK</span>
+                    <span onclick="out_academic()">⥣&nbsp;&nbsp;&nbsp;BACK&nbsp;&nbsp;&nbsp;⥣</span>
                 </div>
             </div>
 
@@ -129,28 +129,40 @@
                                 <?php endif; ?>
                             </div>
                             <div id="project0<?= $row['id'] ?>" class="offset-1 col-5">
-                                <img id="imgproject0<?= $row['id'] ?>" width="100%" height="auto" src="assets/image/<?= $row['gambar'] ?>" alt="" onmouseover="hover_p0<?= $row['id'] ?>()" onmouseout="hout_p0<?= $row['id'] ?>()">
+                                <img id="imgproject0<?= $row['id'] ?>" width="100%" height="auto" src="assets/image/<?= $row['gambar'] ?>" onmouseover="hover_p0<?= $row['id'] ?>()" onmouseout="hout_p0<?= $row['id'] ?>()">
                             </div>
                         </div>
 
                     <?php } ?>
                 </div>
                 <div class="project_out h3 text-center">
-                    <span onclick="out_project()">BACK</span>
+                    <span onclick="out_project()">⥣&nbsp;&nbsp;&nbsp;BACK&nbsp;&nbsp;&nbsp;⥣</span>
                 </div>
             </div>
 
             <div id="contact">
                 <div class="contact_out h3 text-center">
-                    <span onclick="out_contact()">BACK</span>
+                    <span onclick="out_contact()">⥣&nbsp;&nbsp;&nbsp;BACK&nbsp;&nbsp;&nbsp;⥣</span>
                 </div>
                 <div class="ikon mx-auto">
-                    <a href="mailto:<?= $data['gmail'] ?>" target="_blank"><img id="ikon_1" src="assets/icon/gmail.png" alt=""></a>
-                    <a href="https://github.com/<?= $data['github'] ?>" target="_blank"><img id="ikon_2" src="assets/icon/github.png" alt=""></a>
-                    <a href="https://t.me/<?= $data['telegram'] ?>" target="_blank"><img id="ikon_3" src="assets/icon/telegram.png" alt=""></a>
-                    <a href="https://www.instagram.com/<?= $data['facegram'] ?>" target="_blank"><img id="ikon_4" src="assets/icon/instagram.png" alt=""></a>
-                    <a href="https://twitter.com/<?= $data['twitter'] ?>" target="_blank"><img id="ikon_5" src="assets/icon/twitter.png" alt=""></a>
-                    <a href="https://www.facebook.com/<?= $data['facegram'] ?>" target="_blank"><img id="ikon_6" src="assets/icon/facebook.png" alt=""></a>
+                    <a href="mailto:<?= $data['gmail'] ?>" target="_blank">
+                        <img id="ikon_1" src="assets/icon/gmail.png" alt="">
+                    </a>
+                    <a href="https://github.com/<?= $data['github'] ?>" target="_blank">
+                        <img id="ikon_2" src="assets/icon/github.png" alt="">
+                    </a>
+                    <a href="https://t.me/<?= $data['telegram'] ?>" target="_blank">
+                        <img id="ikon_3" src="assets/icon/telegram.png" alt="">
+                    </a>
+                    <a href="https://www.instagram.com/<?= $data['facegram'] ?>" target="_blank">
+                        <img id="ikon_4" src="assets/icon/instagram.png" alt="">
+                    </a>
+                    <a href="https://twitter.com/<?= $data['twitter'] ?>" target="_blank">
+                        <img id="ikon_5" src="assets/icon/twitter.png" alt="">
+                    </a>
+                    <a href="https://www.facebook.com/<?= $data['facegram'] ?>" target="_blank">
+                        <img id="ikon_6" src="assets/icon/facebook.png" alt="">
+                    </a>
                 </div>
                 <div class="ikon_kiri" onclick="checkTime(1)"></div>
                 <div class="ikon_kanan" onclick="checkTime(0)"></div>
@@ -163,8 +175,8 @@
             $(document).ready(function() {
                 countData();
 
-                $("#startyear").attr("min", y-40).attr("max", y+40).val(y);
-                $("#endyear").attr("min", y).attr("max", y+40).val(y);
+                $("#startyear").attr("min", y-40).attr("max", y+40).val("");
+                $("#endyear").attr("min", y).attr("max", y+40).val("");
 
                 $("#btn-add-aca").on("click", function () {
                     $(this).hide("fast", function () {
@@ -234,11 +246,13 @@
                     $("#startyear").hasClass("is-valid") &&
                     $("#endyear").hasClass("is-valid"))
                 {
-                    $("#submit-aca").html("✓");
-                    $("#submit-aca").addClass("btn-outline-success").removeClass("btn-outline-danger");
+                    $("#submit-aca").html("✓")
+                                    .addClass("btn-outline-success")
+                                    .removeClass("btn-outline-danger");
                 } else {
-                    $("#submit-aca").html("☓");
-                    $("#submit-aca").addClass("btn-outline-danger").removeClass("btn-outline-success");
+                    $("#submit-aca").html("☓")
+                                    .addClass("btn-outline-danger")
+                                    .removeClass("btn-outline-success");
                 }
             }
 
@@ -267,10 +281,11 @@
                         $("#tingkat").val("").removeClass("is-valid");
                         $("#startyear").val("").removeClass("is-valid");
                         $("#endyear").val("").removeClass("is-valid");
-                        $("#submit-aca").html("☓");
-                        $("#submit-aca").addClass("btn-outline-danger").removeClass("btn-outline-success");
-                        $("#startyear").val(y);
-                        $("#endyear").val(y);
+                        $("#submit-aca").html("☓")
+                                        .addClass("btn-outline-danger")
+                                        .removeClass("btn-outline-success");
+                        $("#startyear").val("");
+                        $("#endyear").val("");
                         view();
                     }
                 })
@@ -283,6 +298,7 @@
                     data: "val=hapus&id=" + id,
                     success: function(data){
                         view();
+                        $("#form-add-aca").hide();
                         countData();
                     }
                 })
@@ -343,7 +359,7 @@
                 if (wait == 0) {
                     changeicon(dir);
                     wait = 1;
-                    await new Promise(s => setTimeout(s, 1000));
+                    await new Promise(s => setTimeout(s, 500));
                     wait = 0;
                 }
 
